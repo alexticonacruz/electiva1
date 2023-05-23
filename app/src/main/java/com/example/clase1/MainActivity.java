@@ -47,11 +47,10 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG,"btn2");
-                int miColor = Color.rgb(255, 0, 0); // Color rojo (RGB: 255, 0, 0)
+                Log.i(TAG,"btn3");
+                int miColor = Color.rgb(255, 234, 20); // Color rojo (RGB: 255, 0, 0)
                 layout.setBackgroundColor(miColor);
                 demoShoppingCard();
-
             }
         });
     }
@@ -60,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG,"btn1");
         int miColor = Color.rgb(255, 230, 0);
         layout.setBackgroundColor(miColor);
+        demoShoppingCard();
     }
 
     public void GoSecondActivity(View view) {
@@ -70,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
         demoShoppingCard();
         startActivity(intent);
     }
+
+    public void abrir(View view) {
+
+        demoShoppingCard();
+    }
+
 
     private void demoShoppingCard (){
         new ShoppingDemov1().execute();

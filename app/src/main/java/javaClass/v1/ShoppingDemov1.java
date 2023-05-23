@@ -1,6 +1,11 @@
 package javaClass.v1;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 public class ShoppingDemov1 {
+
+
     public void execute(){
         Product pie = new Product("pie", 50);
         Product shoes = new Product("Shoes", 150);
@@ -12,14 +17,24 @@ public class ShoppingDemov1 {
         cart.addProduct(pie);
         cart.addProduct(hat);
         cart.addProduct(shoes);
-        if (cart.estado() == true){
-            Order order = cart.checkout();
-
-            println("The order is " + order);
+        if (cart.getProducts().isEmpty()) {
+            println("Su carrito esta vacio");
         }
         else{
-            println("Su saldo es insuficiente");
+            if (cart.estado() == true){
+                Order order = cart.checkout();
+                println("The order is " + order);
+            }
+            else{
+                println("Su saldo es insuficiente");
+            }
         }
+
+
+
+
+
+
 
     }
     private void println(String s){

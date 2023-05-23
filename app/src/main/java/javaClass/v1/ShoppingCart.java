@@ -46,14 +46,21 @@ public class ShoppingCart {
         );
 
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
     public boolean estado(){
-        if(customer.getCreditCard().getCredit() <= getTotalCost()){
+        if(customer.getCreditCard().getCredit() >= getTotalCost()){
+            imprimir(String.valueOf(customer.getCreditCard().getCredit()));
             return true;
         }
         else{
             return false;
         }
     }
+    public void imprimir(String s){System.out.println(s);}
 
     @Override
     public String toString() {
