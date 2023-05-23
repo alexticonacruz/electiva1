@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import javaClass.v1.Product;
 import javaClass.v1.ShoppingDemov1;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,12 +64,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void GoSecondActivity(View view) {
-        Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+        /*Intent intent = new Intent(MainActivity.this,SecondActivity.class);
         Bundle b = new Bundle();
         b.putString("name",editTextName.getText().toString());
         intent.putExtras(b);
         demoShoppingCard();
+        startActivity(intent);*/
+        Log.i(TAG, "ANTES DE IR A LA SECOND ACTIVITY");
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        // Bundle b = new Bundle();
+        //b.putString("name", editTextName.getText().toString());
+        Product product = new Product("Dress",100);
+        intent.putExtra("product",product);
         startActivity(intent);
+
     }
 
     public void abrir(View view) {

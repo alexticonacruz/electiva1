@@ -19,10 +19,12 @@ import java.util.UUID;
 public class ShoppingCart {
 
     private final Customer customer;
+    private final Catalogue catalogue;
     private final List<Product> products = new ArrayList<>();
 
-    public ShoppingCart(Customer customer) {
+    public ShoppingCart(Customer customer, Catalogue catalogue) {
         this.customer = customer;
+        this.catalogue = catalogue;
     }
 
     public void addProduct(Product product) {
@@ -38,15 +40,16 @@ public class ShoppingCart {
     }
 
     public Order checkout() {
+        for(Product p: products){ //reduce products from catalogue
+            catalogue.remove(p);
+        }
         return new Order(
                 customer,
                 products,
                 UUID.randomUUID().toString(),
                 getTotalCost()
         );
-
     }
-
     public List<Product> getProducts() {
         return products;
     }
@@ -62,6 +65,7 @@ public class ShoppingCart {
     }
     public void imprimir(String s){System.out.println(s);}
 
+
     @Override
     public String toString() {
         return "ShoppingCart{" +
@@ -69,3 +73,5 @@ public class ShoppingCart {
                 '}';
     }
 }
+
+
