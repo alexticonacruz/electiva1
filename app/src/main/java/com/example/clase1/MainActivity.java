@@ -55,7 +55,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void GoLogin (View view){
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
+    }
     public void changeToGreen(View view) {
         Log.i(TAG,"btn1");
         int miColor = Color.rgb(255, 230, 0);
