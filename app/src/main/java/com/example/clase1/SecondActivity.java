@@ -28,13 +28,7 @@ public class SecondActivity extends AppCompatActivity {
             textNombre.setText(name);*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        textNombre = findViewById(R.id.textView);
-        Intent intent = getIntent();
-        Log.i(TAG,"ARRIVING TO SECOND ACTIVITY");
-        if(intent.getExtras() != null) {
-            Product product = intent.getParcelableExtra("product");
-            textNombre.setText(product.getProductName()+product.price);
-        }
+
 
 
 
