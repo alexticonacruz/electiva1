@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class cantidadProductos implements Parcelable {
     private Map<String, Integer> cantidadProdutos;
+    //private int valor = 0;
 
     public cantidadProductos() {
     }
