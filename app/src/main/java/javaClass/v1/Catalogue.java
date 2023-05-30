@@ -3,7 +3,7 @@ package javaClass.v1;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Catalogue {
+public class Catalogue  {
     private final Map<String, Integer> products = new HashMap<>();//Dictionary
 
     public void add(Product product, int amount) {

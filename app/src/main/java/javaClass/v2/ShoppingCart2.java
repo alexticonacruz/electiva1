@@ -1,7 +1,9 @@
 package javaClass.v2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javaClass.v1.Catalogue;
@@ -10,50 +12,74 @@ import javaClass.v1.Order;
 import javaClass.v1.Product;
 
 public class ShoppingCart2 {
-    private final Customer customer;
-    private final Catalogue catalogue;
+    private  Customer2 customer;
+    private  Catalogue2 catalogue;
     private final List<Product> products = new ArrayList<>();
+    private List<Producto2> productosLista = new ArrayList<>();
 
-    public ShoppingCart2(Customer customer, Catalogue catalogue) {
+    private  Map<String, Integer> productosCantidad = new HashMap<>();//Dictionary
+
+
+    public ShoppingCart2(Customer2 customer, Catalogue2 catalogue) {
         this.customer = customer;
         this.catalogue = catalogue;
     }
-
-    public void addProduct(Product product) {
-        products.add(product);
+    public Map<String,Integer> obtenerCantidadProductos(){
+        return  productosCantidad;
     }
+    public List<Producto2> obtenerListaProductos(){
+        return productosLista;
+    }
+
+    public void addProduct(Producto2 product) {
+        productosLista.add(product);
+        actualizaCantidad(product.ObtenerNombre());
+    }
+
+    public void actualizaCantidad(String nombre){
+        if(productosCantidad.containsKey(nombre)){
+            int actual = productosCantidad.get(nombre) + 1;
+            productosCantidad.put(nombre,actual);
+        }
+        else {
+            productosCantidad.put(nombre,1);
+        }
+    }
+
 
     public int getTotalCost() {
         int sum = 0;
-        for (Product p : products) {
-            sum += p.price;
+        for (Producto2 p : productosLista) {
+            sum += p.obtenerPrecio();
         }
         return sum;
     }
 
-    public Order checkout() {
-        for(Product p: products){ //reduce products from catalogue
+    public Order2 checkout() {
+
+        for(Producto2 p: productosLista){ //reduce products from catalogue
             catalogue.remove(p);
         }
-        return new Order(
+        return new Order2(
                 customer,
-                products,
+                productosLista,
                 UUID.randomUUID().toString(),
                 getTotalCost()
         );
     }
-    public List<Product> getProducts() {
-        return products;
+    public List<Producto2> getProducts() {
+        return productosLista;
     }
 
     public boolean estado(){
-        if(customer.getCreditCard().getCredit() >= getTotalCost()){
-            imprimir(String.valueOf(customer.getCreditCard().getCredit()));
-            return true;
-        }
-        else{
-            return false;
-        }
+        return customer.obtenerCreditCard().getCredit() >= getTotalCost();
+        //if(customer.obtenerCreditCard().getCredit() >= getTotalCost()){
+          //  imprimir(String.valueOf(customer.obtenerCreditCard().getCredit()));
+            //return true;
+        //}
+        //else{
+          //  return false;
+        //}
     }
     public void imprimir(String s){System.out.println(s);}
 

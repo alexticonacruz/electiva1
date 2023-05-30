@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     //  ------------- metodo de agregar    -----------------
     public void agregar(View view){
         if(Contador == 0){
@@ -85,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
             usuario.setEnabled(false);
             numeroTarjeta.setEnabled(false);
             dineroActual.setEnabled(false);
+
+            Toast.makeText(this, catalogue2.bbr(producto2.ObtenerNombre()), Toast.LENGTH_SHORT).show();
         }
 
 
@@ -92,11 +96,20 @@ public class MainActivity extends AppCompatActivity {
     }
     public void GoSecond(View view){
         Intent intent = new Intent(MainActivity.this,CarritoActivity.class);
-        intent.putParcelableArrayListExtra("productList", productList);
 
-        SerializableMap listInventario = new SerializableMap(catalogue2.obtenerProductos());
+        // Crear un objeto Catalogue2 y agregar algunos productos
+        //Catalogue2 catalogue = new Catalogue2();
+        //Map<String, Integer> products = new HashMap<>();
+        //products.put("Producto 1", 10);
+        //products.put("Producto 2", 5);
+        //catalogue.setProducts(products);
 
-        intent.putExtra("listInventario",listInventario);
+        // Crear un Intent y agregar el objeto Catalogue2 como extra
+
+        intent.putExtra("catalogue", catalogue2);
+        intent.putExtra("customer",customer2);
+        intent.putExtra("ListaProductos",productList);
+        //Toast.makeText(this, catalogue2.bbr(producto2.ObtenerNombre()), Toast.LENGTH_SHORT).show();
 
         startActivity(intent);
     }

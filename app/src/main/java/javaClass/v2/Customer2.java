@@ -23,7 +23,6 @@ public class Customer2 implements Parcelable {
     public CreditCard2 obtenerCreditCard(){
         return creditCard;
     }
-
     protected Customer2(Parcel in) {
 
         nombre = in.readString();
